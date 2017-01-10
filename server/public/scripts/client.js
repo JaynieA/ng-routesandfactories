@@ -44,9 +44,7 @@ myApp.factory('characterFactory', function(){
 
 myApp.controller('HomeController', ['$scope', 'characterFactory',  function($scope, characterFactory){
   console.log("In NG");
-  console.log('factory -->', characterFactory.charOneSkill);
-  console.log('char total and success', characterFactory.total, characterFactory.charOneSuccess);
-
+  console.log('char total', characterFactory.total);
 }]); //end home controller
 
 myApp.controller('CharOneController', ['$scope', 'characterFactory',  function($scope, characterFactory){
@@ -58,7 +56,7 @@ myApp.controller('CharOneController', ['$scope', 'characterFactory',  function($
     if (randomNumber >= charOneSkill){
       characterFactory.total++;
       characterFactory.charOneSuccess++;
-      console.log('char total and success', characterFactory.total, characterFactory.charOneSuccess);
+      console.log('char one successes-->', characterFactory.charOneSuccess, '/', characterFactory.total, 'total successes');
     } else {
       alert ('Unsuccessful!')
     }
@@ -70,7 +68,17 @@ myApp.controller('CharOneController', ['$scope', 'characterFactory',  function($
 myApp.controller('CharTwoController', ['$scope', 'characterFactory',  function($scope, characterFactory){
   console.log("In NG");
   console.log('factory -->', characterFactory.charOneSkill);
-
+  $scope.highFive = function (){
+    var randomNumber = characterFactory.getRandomNumber();
+    var charTwoSkill = characterFactory.charTwoSkill;
+    if (randomNumber >= charTwoSkill){
+      characterFactory.total++;
+      characterFactory.charTwoSuccess++;
+      console.log('char two successes-->', characterFactory.charTwoSuccess, '/', characterFactory.total, 'total successes');
+    } else {
+      alert ('Unsuccessful!')
+    }
+  }
 }]); //end home controller
 
 myApp.controller('CharThreeController', ['$scope', 'characterFactory',  function($scope, characterFactory){
